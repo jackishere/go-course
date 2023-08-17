@@ -11,13 +11,14 @@ func worker(id int, tasks <-chan int, results chan<- int, wg *sync.WaitGroup) {
 
 	for task := range tasks {
 		fmt.Printf("Worker %d processing task %d\n", id, task)
-		time.Sleep(time.Second) // Simulate some processing time
-		results <- task * 2
+		time.Sleep(time.Millisecond) // Simulate some processing time
+		results <- task * 10
 	}
 }
+
 func main() {
-	numWorkers := 4000000
-	numTasks := 100
+	numWorkers := 4
+	numTasks := 12000
 
 	tasks := make(chan int, numTasks)
 	results := make(chan int, numTasks)
